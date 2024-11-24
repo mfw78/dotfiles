@@ -61,3 +61,6 @@ CreateLink /etc/systemd/user/sockets.target.wants/pulseaudio.socket /usr/lib/sys
 # GNOME Keyring
 CreateLink /etc/systemd/user/sockets.target.wants/gnome-keyring-daemon.socket /usr/lib/systemd/user/gnome-keyring-daemon.socket
 CreateLink /etc/systemd/user/sockets.target.wants/p11-kit-server.socket /usr/lib/systemd/user/p11-kit-server.socket
+
+# https://bbs.archlinux.org/viewtopic.php?id=297004
+CreateLink /usr/lib/libdisplay-info.so.1 libdisplay-info.so
