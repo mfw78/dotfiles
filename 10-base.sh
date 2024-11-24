@@ -5,11 +5,15 @@ AddPackage btrfs-progs # Btrfs filesystem utilities
 AddPackage dosfstools # DOS filesystem utilities
 AddPackage efibootmgr # Linux user-space application to modify the EFI Boot Manager
 AddPackage exfatprogs # exFAT filesystem userspace utilities for the Linux Kernel exfat driver
+# libfido2 allows for using `systemd-cryptenroll` with FIDO 2 tokens
+AddPackage libfido2 # Library functionality for FIDO 2.0, including communication with a device over USB
 AddPackage libpwquality # Library for password quality checking and generating random passwords
 AddPackage linux # The Linux kernel and modules
 AddPackage linux-firmware # Firmware files for Linux
-AddPackage ntp # Network Time Protocol reference implementation
 AddPackage lvm2 # Logical Volume Manager 2 utilities
+AddPackage ntp # Network Time Protocol reference implementation
+AddPackage openssh # SSH protocol implementation for remote login, command execution and file transfer
+AddPackage sbctl # Secure Boot key manager
 AddPackage sudo # Give certain users the ability to run some commands as root
 AddPackage usbutils # A collection of USB tools to query connected USB devices
 AddPackage zip # Compressor/archiver for creating and modifying zipfiles
@@ -162,6 +166,9 @@ f="$(GetPackageOriginalFile reflector /etc/xdg/reflector/reflector.conf)"
 sed -i 's/\(--sort \)age/\1rate/' "$f"
 CreateLink /etc/systemd/system/timers.target.wants/reflector.timer /usr/lib/systemd/system/reflector.timer
 
+# Configure the kernel settings for the UKI
+echo "quiet rw" > "$(CreateFile /etc/kernel/cmdline)"
+
 # Load the nct6775 kernel module for use with lm_sensors
 cat >> "$(CreateFile /etc/modules-load.d/nct6775.conf)" <<EOF
 # Load sensors for lm-sensors
@@ -180,6 +187,11 @@ then
     # Set the crypttab for initramfs and fstab
     CopyFileTo "/etc/crypttab.initramfs-$HOSTNAME" "/etc/crypttab.initramfs" 600
     CopyFileTo "/etc/fstab-$HOSTNAME" "/etc/fstab"
+elif [[ "$HOSTNAME" == "achilles" ]]
+then
+    # Configure the mkinitcpio.conf file
+    f="$(GetPackageOriginalFile mkinitcpio /etc/mkinitcpio.conf)"
+    sed -i 's/^HOOKS=.*/HOOKS=(base systemd autodetect modconf kms keyboard sd-vconsole sd-encrypt block filesystems fsck)/' "$f"
 fi
 
 # TPM 2.0

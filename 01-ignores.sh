@@ -3,6 +3,9 @@ IgnorePath '/boot/*.img'
 IgnorePath '/boot/**/*.EFI'
 IgnorePath '/boot/**/*.efi'
 IgnorePath '/boot/vmlin*'
+IgnorePath '/efi/*'
+# This is signed locally by the secure boot, so signatures can change.
+IgnorePath '/usr/lib/systemd/boot/efi/systemd-bootx64.efi.signed'
 
 # Certificate databases
 IgnorePath '/etc/ca-certificates/extracted/*'
