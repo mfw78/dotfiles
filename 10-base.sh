@@ -16,20 +16,113 @@ AddPackage zip # Compressor/archiver for creating and modifying zipfiles
 
 CreateFile /etc/.pwd.lock 600 > /dev/null
 CopyFile /etc/group
-CopyFile /etc/group-
 CopyFile /etc/gshadow
-CopyFile /etc/gshadow- 600
 CopyFile /etc/pam.d/passwd
 CreateLink /etc/localtime /usr/share/zoneinfo/UTC
 CopyFile /etc/passwd
-CopyFile /etc/passwd-
-CopyFile /etc/shadow
-CopyFile /etc/shadow- 600
 CopyFile /etc/subgid
 CreateFile /etc/subgid- > /dev/null
 CopyFile /etc/subuid
 CreateFile /etc/subuid- > /dev/null
 CopyFile /etc/mkinitcpio.d/linux.preset
+
+# Function to retrieve and parse password and salt from pass
+get_password_and_salt() {
+    local username="$1"
+    local password_entry password salt
+
+    # Fetch the password entry from pass
+    password_entry=$(pass show "Network/Users/$username") || {
+        echo "Error: Could not retrieve entry for $username from pass." >&2
+        exit 1
+    }
+
+    # Extract the password (first line)
+    password=$(echo "$password_entry" | head -n 1)
+
+    # Extract the salt (line starting with 'salt: ')
+    salt=$(echo "$password_entry" | grep '^salt:' | sed -E 's/^salt: (.+)$/\1/')
+
+    # Validate both password and decoded salt
+    if [[ -z "$password" || -z "$salt" ]]; then
+        echo "Error: Missing password or decoded salt for user $username." >&2
+        exit 1
+    fi
+
+    echo "$password $salt"
+}
+
+# Function to generate a yescrypt hash using password and full salt
+generate_password_hash() {
+    local password="$1"
+    local salt="$2"
+    echo "$password" | mkpasswd -s -m yescrypt -S "$salt"
+}
+
+# Function to generate the /etc/shadow template
+generate_shadow_template() {
+    local root_hash="$1"
+    local mfw78_hash="$2"
+    cat <<EOF
+root:!${root_hash}:19686::::::
+bin:!*:19686::::::
+daemon:!*:19686::::::
+mail:!*:19686::::::
+ftp:!*:19686::::::
+http:!*:19686::::::
+nobody:!*:19686::::::
+dbus:!*:19686::::::
+systemd-coredump:!*:19686::::::
+systemd-network:!*:19686::::::
+systemd-oom:!*:19686::::::
+systemd-journal-remote:!*:19686::::::
+systemd-journal-upload:!*:19686::::::
+systemd-resolve:!*:19686::::::
+systemd-timesync:!*:19686::::::
+tss:!*:19686::::::
+uuidd:!*:19686::::::
+mfw78:${mfw78_hash}:19686:0:99999:7:::
+git:!*:19686::::::
+polkitd:!*:19686::::::
+nvidia-persistenced:!*:19686::::::
+avahi:!*:19686::::::
+rtkit:!*:19686::::::
+trezord:!*:19690::::::
+deluge:!*:19699::::::
+ntp:!*:19708::::::
+_talkd:!*:19721::::::
+tor:!*:19764::::::
+rpc:!*:19808::::::
+qemu:!*:19826::::::
+libvirt-qemu:!*:19826::::::
+dnsmasq:!*:19826::::::
+alpm:!*:19991::::::
+saned:!*:20018::::::
+rpcuser:!*:20020::::::
+EOF
+}
+
+# Main script logic
+
+# Get password and full salt for root, then generate its hash
+root_password_salt=$(get_password_and_salt "root")
+root_password=$(echo "$root_password_salt" | awk '{print $1}')
+root_full_salt=$(echo "$root_password_salt" | awk '{print $2}')
+root_hash=$(generate_password_hash "$root_password" "$root_full_salt")
+
+# Get password and full salt for mfw78, then generate its hash
+mfw78_password_salt=$(get_password_and_salt "mfw78")
+mfw78_password=$(echo "$mfw78_password_salt" | awk '{print $1}')
+mfw78_full_salt=$(echo "$mfw78_password_salt" | awk '{print $2}')
+mfw78_hash=$(generate_password_hash "$mfw78_password" "$mfw78_full_salt")
+
+# Generate the shadow template
+template_output=$(generate_shadow_template "$root_hash" "$mfw78_hash")
+
+# Write the template to /etc/shadow
+cat >> "$(CreateFile /etc/shadow)" <<EOF
+$template_output
+EOF
 
 # Specify locales
 f="$(GetPackageOriginalFile glibc /etc/locale.gen)"
