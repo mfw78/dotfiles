@@ -25,8 +25,6 @@ CopyFile /etc/passwd
 CopyFile /etc/passwd-
 CopyFile /etc/shadow
 CopyFile /etc/shadow- 600
-CopyFile /etc/shells
-CopyFile /etc/ssh/sshd_config
 CopyFile /etc/subgid
 CreateFile /etc/subgid- > /dev/null
 CopyFile /etc/subuid
