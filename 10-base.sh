@@ -67,12 +67,14 @@ echo 'nameserver 127.0.0.1' >> "$f"
 # Configure reflector
 f="$(GetPackageOriginalFile reflector /etc/xdg/reflector/reflector.conf)"
 sed -i 's/\(--sort \)age/\1rate/' "$f"
+CreateLink /etc/systemd/system/timers.target.wants/reflector.timer /usr/lib/systemd/system/reflector.timer
 
 # Load the nct6775 kernel module for use with lm_sensors
 cat >> "$(CreateFile /etc/modules-load.d/nct6775.conf)" <<EOF
 # Load sensors for lm-sensors
 nct6775
 EOF
+CreateLink /etc/systemd/system/multi-user.target.wants/lm_sensors.service /usr/lib/systemd/system/lm_sensors.service
 
 # Boot configurations
 if [[ "$HOSTNAME" == "anouk" ]]
@@ -86,3 +88,20 @@ then
     CopyFileTo "/etc/crypttab.initramfs-$HOSTNAME" "/etc/crypttab.initramfs" 600
     CopyFileTo "/etc/fstab-$HOSTNAME" "/etc/fstab"
 fi
+
+# TPM 2.0
+AddPackage tpm2-abrmd # Trusted Platform Module 2.0 Access Broker and Resource Management Daemon
+AddPackage tpm2-tools # Trusted Platform Module 2.0 tools based on tpm2-tss
+CreateLink /etc/systemd/system/multi-user.target.wants/tpm2-abrmd.service /usr/lib/systemd/system/tpm2-abrmd.service
+
+# Misc
+CreateLink /etc/systemd/system/getty.target.wants/getty@tty1.service /usr/lib/systemd/system/getty@.service
+
+# https://gitlab.archlinux.org/archlinux/packaging/packages/shadow/-/commit/8d04a87d0b943e4e0ffbb91d1e59d1009d85e63b
+SetFileProperty /usr/bin/groupmems group groups
+SetFileProperty /usr/bin/groupmems mode 2750
+SetFileProperty /usr/lib/utempter/utempter group utmp
+SetFileProperty /usr/lib/utempter/utempter mode 2755
+
+# Generate the locale
+sudo locale-gen

@@ -8,9 +8,16 @@ AddPackage magic-wormhole # Securely transfer data between computers
 AddPackage neovim # Fork of Vim aiming to improve user experience, plugins, and GUIs
 AddPackage --foreign spotify-tui # Spotify client for the terminal written in Rust
 AddPackage spotifyd # Lightweight spotify streaming daemon with spotify connect support
+AddPackage tor # Anonymizing overlay network.
+
+# Taskwarrior
 AddPackage --foreign taskchampion-sync-server # The server Taskwarrior syncs to
 AddPackage --foreign tasksh # A shell command that wraps Taskwarrior commands
 AddPackage taskwarrior-tui # A terminal user interface for taskwarrior
 AddPackage timew # Timewarrior, A command line time tracking application
-AddPackage tor # Anonymizing overlay network.
+CreateLink /etc/systemd/system/multi-user.target.wants/taskchampion-sync-server.service /usr/lib/systemd/system/taskchampion-sync-server.service
+CreateLink /etc/systemd/system/multi-user.target.wants/trezord.service /usr/lib/systemd/system/trezord.service
+CreateLink /etc/udev/rules.d/51-trezor.rules /usr/lib/udev/rules.d/51-trezor.rules
+
 AddPackage yubikey-manager # Python library and command line tool for configuring a YubiKey
+CreateLink /etc/systemd/system/sockets.target.wants/pcscd.socket /usr/lib/systemd/system/pcscd.socket

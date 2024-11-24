@@ -31,10 +31,6 @@ AddPackage ripgrep # A search tool that combines the usability of ag with the ra
 AddPackage screen # Full-screen window manager that multiplexes a physical terminal
 AddPackage sysstat # A collection of performance monitoring tools (iostat,isag,mpstat,pidstat,sadf,sar)
 AddPackage tmux # Terminal multiplexer
-AddPackage tpm2-abrmd # Trusted Platform Module 2.0 Access Broker and Resource Management Daemon
-AddPackage tpm2-tools # Trusted Platform Module 2.0 tools based on tpm2-tss
-AddPackage --foreign trezor-udev # Udev rules to connect trezor hardware wallets to your linux box
-AddPackage --foreign trezord-git # Trezor Communication Daemon aka Trezor Bridge (written in Go)
 AddPackage ueberzugpp # Command line utility which allows to display images in the terminal, written in C++
 AddPackage unzip # For extracting and viewing files in .zip archives
 AddPackage websocat # Command-line client for web sockets, like netcat/curl/socat for ws://
@@ -44,3 +40,7 @@ AddPackage --foreign yay # Yet another yogurt. Pacman wrapper and AUR helper wri
 AddPackage yazi # Blazing fast terminal file manager written in Rust, based on async I/O
 AddPackage zsh # A very advanced and programmable command interpreter (shell) for UNIX
 AddPackage zoxide # A smarter cd command for your terminal
+
+# Trezor hardware wallet
+AddPackage --foreign trezor-udev # Udev rules to connect trezor hardware wallets to your linux box
+AddPackage --foreign trezord-git # Trezor Communication Daemon aka Trezor Bridge (written in Go)
