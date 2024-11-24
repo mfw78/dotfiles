@@ -1,4 +1,12 @@
-CopyFile /etc/systemd/network/20-wired.network
+# Wired network
+cat >> "$(CreateFile /etc/systemd/network/20-wired.network)" <<EOF
+[Match]
+Name=en*
+
+[Network]
+DHCP=yes
+IgnoreCarrierLoss=3s
+EOF
 
 # systemd-networkd configuration
 CreateLink /etc/systemd/system/dbus-org.freedesktop.network1.service /usr/lib/systemd/system/systemd-networkd.service
@@ -11,9 +19,15 @@ CreateLink /etc/systemd/system/sysinit.target.wants/systemd-network-generator.se
 CreateLink /etc/systemd/system/multi-user.target.wants/iptables.service /usr/lib/systemd/system/iptables.service
 
 # WiFi
-CopyFile /etc/systemd/network/25-wireless.network
-CreateLink /etc/systemd/system/multi-user.target.wants/iwd.service /usr/lib/systemd/system/iwd.service
+cat >> "$(CreateFile /etc/systemd/network/25-wireless.network)" <<EOF
+[Match]
+Name=wlan0
 
+[Network]
+DHCP=yes
+IgnoreCarrierLoss=3s
+EOF
+CreateLink /etc/systemd/system/multi-user.target.wants/iwd.service /usr/lib/systemd/system/iwd.service
 
 # Network services
 CreateLink /etc/systemd/system/multi-user.target.wants/dnscrypt-proxy.service /usr/lib/systemd/system/dnscrypt-proxy.service
