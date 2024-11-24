@@ -1,6 +1,6 @@
 # GUI environment
 AddPackage grim # Screenshot utility for Wayland
-AddPackage --foreign hyprland-nvidia # A dynamic tiling Wayland compositor based on wlroots that doesn't sacrifice on its looks. (NVIDIA patch)
+AddPackage hyprland # A dynamic tiling Wayland compositor based on wlroots that doesn't sacrifice on its looks.
 AddPackage hyprpaper # A blazing fast wayland wallpaper utility with IPC controls
 AddPackage libva-nvidia-driver # VA-API implementation that uses NVDEC as a backend
 AddPackage libva-utils # Intel VA-API Media Applications and Scripts for libva
@@ -17,7 +17,7 @@ AddPackage wl-clipboard # Command-line copy/paste utilities for Wayland
 AddPackage wofi # Launcher for wlroots-based wayland compositors
 AddPackage --foreign wofi-emoji # Emoji picker for Wayland using wofi and wtype
 AddPackage --foreign wofi-pass # A Wayland-native interface for conveniently using pass
-AddPackage --foreign xdg-desktop-portal-hyprland-git # xdg-desktop-portal backend for hyprland
+AddPackage xdg-desktop-portal-hyprland # xdg-desktop-portal backend for hyprland
 AddPackage xdg-user-dirs # Manage user directories like ~/Desktop and ~/Music
 
 # Fonts
