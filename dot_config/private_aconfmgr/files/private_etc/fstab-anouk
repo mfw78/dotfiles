@@ -1,0 +1,25 @@
+# Static information about the filesystems.
+# See fstab(5) for details.
+
+# <file system> <dir> <type> <options> <dump> <pass>
+# /dev/mapper/VolGroupSpan-root
+UUID=444304f3-abac-44a0-b153-abc40108b898	/         	ext4      	rw,relatime	0 1
+
+# /dev/md0
+UUID=285B-D5D7      	/boot     	vfat      	rw,relatime,fmask=0022,dmask=0022,codepage=437,iocharset=ascii,shortname=mixed,utf8,errors=remount-ro	0 2
+
+# /dev/nvme0n1p2
+UUID=d98ac649-8870-41ea-8ef4-90873da8e113	none      	swap      	defaults  	0 0
+
+# /dev/nvme1n1p2
+UUID=1d556c44-835c-409f-a391-4ce23f68b76d	none      	swap      	defaults  	0 0
+
+# Home
+UUID=00020c64-8159-47fc-8a12-88ebb7c18233	/home		btrfs		subvol=@home,defaults	0 0
+UUID=00020c64-8159-47fc-8a12-88ebb7c18233	/home/.snapshots	btrfs		subvol=@snapshots,defaults	0 0
+
+# Docker and Code
+UUID=07ccdc9d-de81-4ed2-b990-67d198a4ea65	/var/lib/docker		ext4		rw,relatime	0 2
+UUID=e3f1369f-52cd-493d-b665-46621b58ad80	/code		ext4		rw,relatime	0 2
+UUID=603e6bf0-2074-4249-9328-3e7bcb3c2c92	/var/lib/machines	ext4		rw,relatime	0 2
+PARTUUID=c9a06668-71c6-40c6-838a-36d9bd2bb3a6	/data		ext4		rw,relatime	0 2

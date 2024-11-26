@@ -1,0 +1,9 @@
+0000000000000000000000000000000000000000 823222e5adb6e1d2b18913f7aa3a5268fcfa4fc8 mfw78 <mfw78@nullis.xyz> 1732393750 +0000	commit (initial): chore: initial commit
+823222e5adb6e1d2b18913f7aa3a5268fcfa4fc8 aa045f81aeacbb0ab3639e413ea972a16283bf22 mfw78 <mfw78@nullis.xyz> 1732419869 +0000	commit: chore: remove sshd specific config and appened shells
+aa045f81aeacbb0ab3639e413ea972a16283bf22 9aa590e7b8628e95897759c52b7adb5c1655e2e8 mfw78 <mfw78@nullis.xyz> 1732419896 +0000	commit: chore: libdisplay-info.so.1 due broken upstream
+9aa590e7b8628e95897759c52b7adb5c1655e2e8 b872263f463c21b08052fb18fe9e2018a1117f04 mfw78 <mfw78@nullis.xyz> 1732421245 +0000	commit: chore: categorise remaining unsorted
+b872263f463c21b08052fb18fe9e2018a1117f04 0bdcae19d8195ef8931e06595831f0bbdbcdd840 mfw78 <mfw78@nullis.xyz> 1732421401 +0000	commit: chore: inline networking
+0bdcae19d8195ef8931e06595831f0bbdbcdd840 b872263f463c21b08052fb18fe9e2018a1117f04 mfw78 <mfw78@nullis.xyz> 1732421443 +0000	reset: moving to HEAD~
+b872263f463c21b08052fb18fe9e2018a1117f04 b5d430e0a1897def55cea2c845755db413c34685 mfw78 <mfw78@nullis.xyz> 1732421451 +0000	commit: chore: inline networking
+b5d430e0a1897def55cea2c845755db413c34685 f6c4a0089b78b36ff4caf21c94f875809b566bf3 mfw78 <mfw78@nullis.xyz> 1732429026 +0000	commit: feat: shadow generation from password-store
+f6c4a0089b78b36ff4caf21c94f875809b566bf3 89972861e9261a42e8020a022c908a4d26dd6fa7 mfw78 <mfw78@nullis.xyz> 1732445605 +0000	pull: Fast-forward
