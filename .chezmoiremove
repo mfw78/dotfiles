@@ -1,6 +1,15 @@
+# No bash, thanks
 .bash_profile
 .bashrc
 .bash_logout
 .bash_history
+
+# No python history
+.python_history
+
+# Any hyprland crash reports
+.hyprland
+
+# Any JS junk
 .npm
 .yarn
