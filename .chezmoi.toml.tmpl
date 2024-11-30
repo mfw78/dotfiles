@@ -1,5 +1,12 @@
-{{- $email := promptStringOnce . "email" "Email address" -}}
+{{- $email := promptStringOnce . "email" "Email/GPG address" -}}
+{{- $passRepo := promptStringOnce . "passRepo" "Password store repository" -}}
 
+encryption = "gpg"
+[gpg]
+  recipient = {{ $email | quote }}
 [data]
   email = {{ $email | quote }}
 
+[hooks.read-source-state.pre]
+command = "/home/mfw78/.local/share/chezmoi/.install-password-manager.sh"
+args = [{{ $email | quote }}, {{ $passRepo | quote }}]

@@ -2,4 +2,5 @@
 .bashrc
 .bash_logout
 .bash_history
-
+.npm
+.yarn
