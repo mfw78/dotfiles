@@ -1,0 +1,14 @@
+# Files
+data.location=~/.task
+
+forcecolor=on
+
+# Contexts
+context.work=-buy -reading -icebox
+context.holidays=+holidays +leave -icebox
+
+# User defined attributes (UDAs)
+news.version=3.1.0
+sync.server.client_id={{ (passFields "Personal/Apps/taskwarrior").client_id }}
+sync.encryption_secret={{ pass "Personal/Apps/taskwarrior" }}
+sync.server.url=http:\/\/127.0.0.1:53589
