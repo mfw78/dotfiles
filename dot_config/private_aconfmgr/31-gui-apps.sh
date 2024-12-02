@@ -22,4 +22,4 @@ AddPackage xournalpp # Handwriting notetaking software with PDF annotation suppo
 # Web browser
 AddPackage firefox # Fast, Private & Safe Web Browser
 AddPackage browserpass # Native host app for Browserpass, browser extension for zx2c4's pass (password manager)
-AddPackage browser-pass-firefox # Firefox extension for Browserpass, browser extension for zx2c4's pass (password manager)
+AddPackage browserpass-firefox # Firefox extension for Browserpass, browser extension for zx2c4's pass (password manager)
