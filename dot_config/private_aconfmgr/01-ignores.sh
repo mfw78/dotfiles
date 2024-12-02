@@ -62,3 +62,6 @@ IgnorePath '/usr/share/glib-2.0/schemas/gschemas.compiled'
 IgnorePath '/usr/share/info/dir'
 IgnorePath '/usr/share/mime'
 
+# Elements of containerd / CNI not used (empty)
+IgnorePath '/etc/cni'
+IgnorePath '/opt/containerd'

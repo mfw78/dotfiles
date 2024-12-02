@@ -13,3 +13,6 @@
 # Any JS junk
 .npm
 .yarn
+
+# Unsorted for aconfmgr
+.config/aconfmgr/99-unsorted.sh

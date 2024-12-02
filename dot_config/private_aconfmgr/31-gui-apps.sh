@@ -6,7 +6,6 @@ AddPackage darktable # Utility to organize and develop raw images
 AddPackage deluge # BitTorrent client with multiple user interfaces in a client/server model
 AddPackage deluge-gtk # GTK UI for Deluge
 AddPackage digikam # An advanced digital photo management application
-AddPackage firefox # Fast, Private & Safe Web Browser
 AddPackage gimp # GNU Image Manipulation Program
 AddPackage gnome-keyring # Stores passwords and encryption keys
 AddPackage hugin # Panorama photo stitcher
@@ -18,5 +17,9 @@ AddPackage rawtherapee # A powerful cross-platform raw image processing program
 AddPackage signal-desktop # Signal Private Messenger for Linux
 AddPackage syncthing # Open Source Continuous Replication / Cluster Synchronization Thing
 AddPackage --foreign webcord # A Discord and SpaceBar Electron-based client implemented without Discord API
-AddPackage xdg-desktop-portal # Desktop integration portals for sandboxed apps
 AddPackage xournalpp # Handwriting notetaking software with PDF annotation support
+
+# Web browser
+AddPackage firefox # Fast, Private & Safe Web Browser
+AddPackage browserpass # Native host app for Browserpass, browser extension for zx2c4's pass (password manager)
+AddPackage browser-pass-firefox # Firefox extension for Browserpass, browser extension for zx2c4's pass (password manager)

@@ -139,7 +139,8 @@ if [[ "$HOSTNAME" == "anouk" ]]; then
     # Configure fwmark rules
     ConfigureFwmarkRules
 
-    # Create symlink for the container service
+    # Create symlink for the container service and fwmark rules
     CreateLink "/etc/systemd/system/machines.target.wants/systemd-nspawn@${CONTAINER_NAME}.service" \
                "/usr/lib/systemd/system/systemd-nspawn@.service"
+    CreateLink /etc/systemd/system/multi-user.target.wants/fwmark-rules.service /etc/systemd/system/fwmark-rules.service
 fi

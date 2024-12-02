@@ -187,6 +187,10 @@ then
     # Set the crypttab for initramfs and fstab
     CopyFileTo "/etc/crypttab.initramfs-$HOSTNAME" "/etc/crypttab.initramfs" 600
     CopyFileTo "/etc/fstab-$HOSTNAME" "/etc/fstab"
+
+    # Forwarding GPG agent through SSH: https://wiki.archlinux.org/title/GnuPG#Forwarding_gpg-agent_and_ssh-agent_to_remote
+    f="$(GetPackageOriginalFile openssh /etc/ssh/sshd_config)"
+    echo 'StreamLocalBindUnlink yes' >> "$f"
 elif [[ "$HOSTNAME" == "achilles" ]]
 then
     # Configure the mkinitcpio.conf file

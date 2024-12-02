@@ -1,6 +1,7 @@
 # CLI base tools
 AddPackage alacritty # A cross-platform, GPU-accelerated terminal emulator
 AddPackage aria2 # Download utility that supports HTTP(S), FTP, BitTorrent, and Metalink
+AddPackage btop # A monitor of system resources, bpytop ported to C++
 AddPackage dmidecode # Desktop Management Interface table related utilities
 AddPackage dnscrypt-proxy # A flexible DNS proxy, with support for encrypted DNS protocols
 AddPackage ethtool # Utility for controlling network drivers and hardware
@@ -9,7 +10,6 @@ AddPackage ffmpegthumbnailer # Lightweight video thumbnailer that can be used by
 AddPackage fzf # Command-line fuzzy finder
 AddPackage gnu-netcat # GNU rewrite of netcat, the network piping application
 AddPackage hdparm # A shell utility for manipulating Linux IDE drive/driver parameters
-AddPackage htop # Interactive process viewer
 AddPackage inetutils # A collection of common network programs
 AddPackage iwd # Internet Wireless Daemon
 AddPackage less # A terminal based program for viewing text files

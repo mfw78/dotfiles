@@ -1,7 +1,10 @@
 # GUI environment
+AddPackage brightnessctl # Lightweight brightness control tool
 AddPackage grim # Screenshot utility for Wayland
 AddPackage hyprland # A dynamic tiling Wayland compositor based on wlroots that doesn't sacrifice on its looks.
 AddPackage hyprpaper # A blazing fast wayland wallpaper utility with IPC controls
+AddPackage hyprlock # hyprland's GPU-accelerated screen locking utility
+AddPackage hypridle # hyprland's idle daemon
 AddPackage libva-nvidia-driver # VA-API implementation that uses NVDEC as a backend
 AddPackage libva-utils # Intel VA-API Media Applications and Scripts for libva
 AddPackage nvidia # NVIDIA kernel modules
@@ -18,6 +21,7 @@ AddPackage wofi # Launcher for wlroots-based wayland compositors
 AddPackage --foreign wofi-emoji # Emoji picker for Wayland using wofi and wtype
 AddPackage --foreign wofi-pass # A Wayland-native interface for conveniently using pass
 AddPackage xdg-desktop-portal-hyprland # xdg-desktop-portal backend for hyprland
+AddPackage xdg-desktop-portal # Desktop integration portals for sandboxed apps
 AddPackage xdg-user-dirs # Manage user directories like ~/Desktop and ~/Music
 
 # Fonts
@@ -62,5 +66,3 @@ CreateLink /etc/systemd/user/sockets.target.wants/pulseaudio.socket /usr/lib/sys
 CreateLink /etc/systemd/user/sockets.target.wants/gnome-keyring-daemon.socket /usr/lib/systemd/user/gnome-keyring-daemon.socket
 CreateLink /etc/systemd/user/sockets.target.wants/p11-kit-server.socket /usr/lib/systemd/user/p11-kit-server.socket
 
-# https://bbs.archlinux.org/viewtopic.php?id=297004
-CreateLink /usr/lib/libdisplay-info.so.1 libdisplay-info.so

@@ -22,3 +22,8 @@ CreateLink /etc/udev/rules.d/51-trezor.rules /usr/lib/udev/rules.d/51-trezor.rul
 AddPackage yubikey-manager # Python library and command line tool for configuring a YubiKey
 AddPackage yubikey-personalization # Yubico YubiKey Personalization library and tool
 CreateLink /etc/systemd/system/sockets.target.wants/pcscd.socket /usr/lib/systemd/system/pcscd.socket
+
+# Dictionaries
+AddPackage hunspell-en_au # AU English hunspell dictionaries
+AddPackage hunspell-en_gb # GB English hunspell dictionaries
+AddPackage hunspell-en_us # US English hunspell dictionaries
