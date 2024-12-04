@@ -1,3 +1,10 @@
+{{- $ip := "" }}
+{{- if eq .chezmoi.hostname "anouk" }}
+  {{- $ip := "127.0.0.1" }}
+{{- else }}
+  {{- $ip_with_subnet := split "/" (passFields "Network/WireGuard/anouk").address }}
+  {{- $ip = $ip_with_subnet._0 }}
+{{- end -}}
 # Files
 data.location=~/.task
 
@@ -11,4 +18,4 @@ context.holidays=+holidays +leave -icebox
 news.version=3.1.0
 sync.server.client_id={{ (passFields "Personal/Apps/taskwarrior").client_id }}
 sync.encryption_secret={{ pass "Personal/Apps/taskwarrior" }}
-sync.server.url=http:\/\/127.0.0.1:53589
+sync.server.url=http:\/\/{{ $ip }}:53589

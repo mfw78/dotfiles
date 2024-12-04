@@ -1,8 +1,8 @@
 # This will change based upon machine
-$primary = DP-4
+$primary = {{ index (index .machine_settings $.chezmoi.hostname) "primary_display" }} 
 
-$bg				= 0xff080808
-$fg				= 0xffb2b2b2
+$bg			= 0xff080808
+$fg			= 0xffb2b2b2
 $fgbr			= 0xffeeeeee
 $black			= 0xff323437
 $red			= 0xffff5454

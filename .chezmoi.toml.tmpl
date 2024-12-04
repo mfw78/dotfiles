@@ -6,6 +6,14 @@ encryption = "gpg"
   recipient = {{ $email | quote }}
 [data]
   email = {{ $email | quote }}
+[data.machine_settings.achilles]
+  scaling_factor = 2
+  primary_display = "eDP-1"
+  layout = "dwindle"
+[data.machine_settings.anouk]
+  scaling_factor = 1
+  primary_dipslay = "DP-4"
+  layout = "master"
 
 [hooks.read-source-state.pre]
 command = "/home/mfw78/.local/share/chezmoi/.install-password-manager.sh"

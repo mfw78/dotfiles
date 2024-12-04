@@ -1,6 +1,11 @@
 # Syntax is the same as in Hypr, but settings might differ.
 #
 # Refer to the wiki for more information.
+#
+# Define variables that are influenced by chezmoi configuration
+$primary    = {{ index (index .machine_settings $.chezmoi.hostname) "primary_display" }}
+$scaling    = {{ index (index .machine_settings $.chezmoi.hostname) "scaling_factor" }}
+$layout     = {{ index (index .machine_settings $.chezmoi.hostname) "layout" }}
 
 ################################################################################
 # Environment Variables
@@ -70,11 +75,7 @@ $whitebr    = 0xffe4e4e4
 # Monitors
 ################################################################################
 # Expected monitors
-$primary    = DP-4
-#monitor     = $primary,     2560x1440,        auto,        1
-monitor      = $primary,     preferred, auto, 1
-#monitor     = HDMI-A-2, 2560x1440, auto, 1
-#monitor        = DP-2,            preferred,        auto,        1
+monitor	    = $primary, preferred, auto, $scaling
 
 # Random monitors
 monitor     = , preferred, auto, 1, mirror, $primary
@@ -160,7 +161,7 @@ general {
     col.active_border = $blue
     col.inactive_border = $black
 
-    layout = master
+    layout = $layout
 }
 
 master {

@@ -5,11 +5,18 @@ general {
 }
 
 #Use this on laptops
-#listener {
-#	timeout = 120								# 2 min
-#	on-timeout = brightnessctl -s set 10
-#	on-resume = brightnessctl -r
-#}
+{{- if eq .chezmoi.hostname "achilles" }}
+listener {
+	timeout = 120				# 2 min
+	on-timeout = brightnessctl -s set 10
+	on-resume = brightnessctl -r
+}
+
+listener {
+	timeout = 1800				# 30 min
+	on-timeout = systemctl suspend		# suspend pc
+}
+{{- end }}
 
 listener {
     timeout = 300                               # 5 min
@@ -21,9 +28,3 @@ listener {
     on-timeout = hyprctl dispatch dpms off      # screen off when timeout has passed
     on-resume = hyprctl dispatch dpms on
 }
-
-#Use this on laptops
-#listener {
-#    timeout = 1800                              # 30 min
-#    on-timeout = systemctl suspend              # suspend pc
-#}
