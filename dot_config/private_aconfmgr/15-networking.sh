@@ -20,6 +20,9 @@ EOF
     CreateLink /etc/systemd/system/sockets.target.wants/systemd-networkd.socket /usr/lib/systemd/system/systemd-networkd.socket
     CreateLink /etc/systemd/system/sysinit.target.wants/systemd-network-generator.service /usr/lib/systemd/system/systemd-network-generator.service
 
+    # Firewall
+    CreateLink /etc/systemd/system/multi-user.target.wants/iptables.service /usr/lib/systemd/system/iptables.service
+
     # WiFi
     cat >> "$(CreateFile /etc/systemd/network/25-wireless.network)" <<EOF
 [Match]
@@ -43,10 +46,11 @@ then
     CreateLink /etc/systemd/system/multi-user.target.wants/NetworkManager.service /usr/lib/systemd/system/NetworkManager.service
     CreateLink /etc/systemd/system/network-online.target.wants/NetworkManager-wait-online.service /usr/lib/systemd/system/NetworkManager-wait-online.service
     CreateLink /etc/systemd/system/systemd-networkd.service /dev/null
-fi
 
-# Firewall
-CreateLink /etc/systemd/system/multi-user.target.wants/iptables.service /usr/lib/systemd/system/iptables.service
+    # NTP / timesync
+    CreateLink /etc/systemd/system/dbus-org.freedesktop.timesync1.service /usr/lib/systemd/system/systemd-timesyncd.service
+    CreateLink /etc/systemd/system/sysinit.target.wants/systemd-timesyncd.service /usr/lib/systemd/system/systemd-timesyncd.service
+fi
 
 # Network services
 CreateLink /etc/systemd/system/multi-user.target.wants/dnscrypt-proxy.service /usr/lib/systemd/system/dnscrypt-proxy.service

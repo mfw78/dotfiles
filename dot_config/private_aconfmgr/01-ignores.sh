@@ -17,8 +17,9 @@ IgnorePath '/etc/pacman.d/gnupg/*'
 IgnorePath '/etc/lvm/archive/*'
 IgnorePath '/etc/lvm/backup/*'
 
-# Don't keep iwd configuration
+# Don't keep any ephemeral network configuration
 IgnorePath '/etc/iwd'
+IgnorePath '/etc/NetworkManager/system-connections'
 
 # Cache and generated files
 IgnorePath '/etc/adjtime'

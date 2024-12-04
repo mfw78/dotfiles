@@ -84,7 +84,8 @@ EOF
         # Use PostUp for roaming machines
         config_content+=$(cat <<EOF
 
-PostUp=wg set %i private-key <(su $username -c "export PASSWORD_STORE_DIR=/home/$username/.password-store/; pass Network/WireGuard/$current_host")
+PostUp=wg set %i private-key <(su $username -c "export PASSWORD_STORE_DIR=/home/$username/.password-store/; pass Network/WireGuard/$current_host | head -n 1")
+Table=off
 EOF
 )
     fi
@@ -115,4 +116,7 @@ peers=("anouk" "registry" "site-01" "achilles")
 username="mfw78"
 GenerateWireGuardConfig "$HOSTNAME" "wg0" "${peers[@]}" "$username"
 
-CreateLink /etc/systemd/system/multi-user.target.wants/wg-quick@wg0.service /usr/lib/systemd/system/wg-quick@.service
+# Selectively enable the service (primarily depending if it's a fixed computer or not)
+if [[ "$HOSTNAME" == "anouk" ]]; then
+  CreateLink /etc/systemd/system/multi-user.target.wants/wg-quick@wg0.service /usr/lib/systemd/system/wg-quick@.service
+fi
