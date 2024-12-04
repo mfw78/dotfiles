@@ -1,14 +1,18 @@
-{{- $email := promptStringOnce . "email" "Email/GPG address" -}}
-{{- $passRepo := promptStringOnce . "passRepo" "Password store repository" -}}
+{{- $codespaces := env "CODESPACES" | not | not -}}
+sourceDir = {{ .chezmoi.sourceDir | quote }}
 
 encryption = "gpg"
 [gpg]
-  recipient = {{ $email | quote }}
+  recipient = "mfw78@nullis.xyz"
 [merge]
   command = "nvim"
   args = ["-d", "{{ "{{" }} .Destination {{ "}}" }}", "{{ "{{" }} .Source {{ "}}" }}", "{{ "{{" }} .Target {{ "}}" }}"]
 [data]
-  email = {{ $email | quote }}
+  email = "mfw78@nullis.xyz"
+  codespaces = {{ $codespaces }}
+{{- if not $codespaces -}}{{/* Aspects to only include if NOT codespaces*/}}
+{{- $email := promptStringOnce . "email" "Email/GPG address" -}}
+{{- $passRepo := promptStringOnce . "passRepo" "Password store repository" }}
 [data.machine_settings.achilles]
   scaling_factor = 2
   primary_display = "eDP-1"
@@ -21,3 +25,5 @@ encryption = "gpg"
 [hooks.read-source-state.pre]
 command = "/home/mfw78/.local/share/chezmoi/.install-password-manager.sh"
 args = [{{ $email | quote }}, {{ $passRepo | quote }}]
+{{- end }}
+

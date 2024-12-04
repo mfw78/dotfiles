@@ -1,0 +1,8 @@
+{{ if not .codespaces -}}
+.config
+.gnupg
+.ssh
+.task*
+!.config/nvim       # Explicitly allow the nvim configuration
+{{ end -}}
+install.sh
