@@ -32,5 +32,5 @@ CreateLink /etc/systemd/system/sockets.target.wants/libvirtd-admin.socket /usr/l
 CreateLink /etc/systemd/system/sockets.target.wants/libvirtd-ro.socket /usr/lib/systemd/system/libvirtd-ro.socket
 CreateLink /etc/systemd/system/sockets.target.wants/libvirtd.socket /usr/lib/systemd/system/libvirtd.socket
 
-# Enable docker services
-CreateLink /etc/systemd/system/multi-user.target.wants/docker.service /usr/lib/systemd/system/docker.service
+# Enable docker socket (lazy-load docker)
+CreateLink /etc/systemd/system/sockets.target.wants/docker.socket /usr/lib/systemd/system/docker.socket
