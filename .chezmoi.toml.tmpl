@@ -1,4 +1,4 @@
-{{- $codespaces := env "CODESPACES" | not | not -}}
+{{- $devpod := env "DEVPOD" | not | not -}}
 sourceDir = {{ .chezmoi.sourceDir | quote }}
 
 encryption = "gpg"
@@ -9,8 +9,8 @@ encryption = "gpg"
   args = ["-d", "{{ "{{" }} .Destination {{ "}}" }}", "{{ "{{" }} .Source {{ "}}" }}", "{{ "{{" }} .Target {{ "}}" }}"]
 [data]
   email = "mfw78@nullis.xyz"
-  codespaces = {{ $codespaces }}
-{{- if not $codespaces -}}{{/* Aspects to only include if NOT codespaces*/}}
+  devpod = {{ $devpod }}
+{{- if not $devpod -}}
 {{- $email := promptStringOnce . "email" "Email/GPG address" -}}
 {{- $passRepo := promptStringOnce . "passRepo" "Password store repository" }}
 [data.machine_settings.achilles]
