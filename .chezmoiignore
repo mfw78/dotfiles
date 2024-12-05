@@ -1,7 +1,7 @@
-{{ if (not .devpod) -}}
-.config
-.gnupg
-.ssh
+{{ if .devpod -}}
+.config/
+.gnupg/
+.ssh/
 .task*
 !.config/nvim       # Explicitly allow the nvim configuration
 {{ end -}}
