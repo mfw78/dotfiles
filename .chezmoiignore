@@ -1,8 +1,8 @@
 {{ if .devpod -}}
-.config/
+.config/*
 .gnupg/
 .ssh/
 .task*
-!.config/nvim       # Explicitly allow the nvim configuration
+!.config/nvim/       # Explicitly allow the nvim configuration
 {{ end -}}
 install.sh
