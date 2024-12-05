@@ -1,3 +1,4 @@
+{{- if (not .devpod) -}}
 # Function to set SSH_AUTH_SOCK for gpg-agent's SSH socket
 set_gpg_agent_ssh_socket() {
     # Set SSH_AUTH_SOCK to gpg-agent's SSH socket
@@ -25,6 +26,7 @@ else
     fi
 fi
 
+{{ end -}}
 # Set the default editor to neovim
 export EDITOR=$(which nvim)
 
