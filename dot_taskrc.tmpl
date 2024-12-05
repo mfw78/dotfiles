@@ -1,6 +1,6 @@
 {{- $ip := "" }}
 {{- if eq .chezmoi.hostname "anouk" }}
-  {{- $ip := "127.0.0.1" }}
+  {{- $ip = "127.0.0.1" }}
 {{- else }}
   {{- $ip_with_subnet := split "/" (passFields "Network/WireGuard/anouk").address }}
   {{- $ip = $ip_with_subnet._0 }}
