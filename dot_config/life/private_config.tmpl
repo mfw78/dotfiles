@@ -1,0 +1,32 @@
+# Timezone Configuration
+{{- with (passFields "Network/Users/mfw78").local_tz }}
+export LOCAL_TZ="{{ . }}"
+{{- end }}
+{{- with (passFields "Network/Users/mfw78").family_tz }}
+export FAMILY_TZ="{{ . }}"
+{{- end }}
+export SYSTEM_TZ="UTC"
+
+# Time Block Definitions
+export MORNING_BLOCK_START="0800"
+export MORNING_BLOCK_END="1200"
+export MORNING_BLOCK_NAME="Morning Technical"
+
+export FLEX_BLOCK_START="1200"
+export FLEX_BLOCK_END="1400"
+export FLEX_BLOCK_NAME="Flex Block"
+
+export EVENING_BLOCK_START="1800"
+export EVENING_BLOCK_END="2100"
+export EVENING_BLOCK_NAME="Evening Technical"
+
+# File Paths
+export JOURNAL_DIR="$HOME/graph/life/journal"
+export TEMPLATE_DIR="$HOME/graph/life/templates"
+export GRAPH_DIR="$HOME/graph"
+
+# Notification Settings
+export NOTIFICATION_TIMEOUT=3000
+
+# Block Tags
+export FOCUS_TAG="tag:focused"

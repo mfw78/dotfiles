@@ -46,7 +46,7 @@ env = WLR_NO_HARDWARE_CURSORS, 1
 ################################################################################
 $browser        = /usr/bin/firefox
 $terminal       = alacritty
-$editor         = alacritty -t Neovim -e /usr/bin/nvim
+$editor         = zed
 $files          = alacritty -t yazi -e /usr/bin/yazi
 $media          = alacritty -t Spotify-tui -e /usr/bin/spt
 $locker         = hyprlock
@@ -205,9 +205,9 @@ bindm = SUPER,      mouse:273,      resizewindow
 
 bind = SUPER,       Return,         exec,           $terminal
 bind = SUPER_SHIFT, M,              exec,           $media
-bind = SUPER_SHIFT, E,              exec,           $files
-bind = SUPER_SHIFT, N,              exec,           $editor
-bind = SUPER_SHIFT, w,              exec,           $browser
+bind = SUPER_SHIFT, Y,              exec,           $files
+bind = SUPER_SHIFT, Z,              exec,           $editor
+bind = SUPER_SHIFT, F,              exec,           $browser
 bind = SUPER,       D,              exec,           wofi --show drun
 bind = SUPER,       N,              exec,           $notifications
 bind = CTRL_SHIFT,  T,              exec,           $taskwarrior
@@ -349,6 +349,6 @@ bind = SUPER_CTRL,       m,     layoutmsg, addmaster
 bind = SUPER_CTRL,       r,     layoutmsg, removemaster
 
 # Wofi 
-bind = CTRL_SHIFT,  p,     exec, wofi-pass  # password store
-bind = CTRL_SHIFT,  e,     exec, wofi-emoji # emojis
+bind = SUPER_SHIFT,  p,     exec, wofi-pass  # password store
+bind = SUPER_SHIFT,  e,     exec, wofi-emoji # emojis
 
