@@ -1,3 +1,5 @@
+{{- with (passFields "Network/Users/mfw78").local_tz }}
+export LOCAL_TZ="
 // -*- mode: jsonc -*-
 {
     // "layer": "top", // Waybar at top layer
@@ -108,7 +110,7 @@
         "spacing": 10
     },
     "clock": {
-        "timezone": "Asia/Tbilisi",
+        "timezone": "{{ . }}",
         "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
         "format-alt": "{:%Y-%m-%d}"
     },
@@ -219,3 +221,5 @@
     }
   }
 }
+{{- end }}
+
