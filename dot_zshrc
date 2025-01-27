@@ -101,3 +101,70 @@ alias ls="${aliases[ls]:-ls} -A"
 # Set shell options: http://zsh.sourceforge.net/Doc/Release/Options.html.
 setopt glob_dots     # no special treatment for file names with a leading dot
 setopt no_auto_menu  # require an extra TAB press to open the completion menu
+
+# Wrapper functions for task and timew
+function task() {
+  TZ=$LOCAL_TZ command task "$@"
+}
+
+function timew() {
+  TZ=$LOCAL_TZ command timew "$@"
+}
+
+# Source life management configuration
+source ~/.config/life/config
+
+# Time block shortcuts
+alias block-morning="timew start \"$MORNING_BLOCK_NAME\" $FOCUS_TAG"
+alias block-flex="timew start \"$FLEX_BLOCK_NAME\""
+alias block-evening="timew start \"$EVENING_BLOCK_NAME\" $FOCUS_TAG"
+alias block-stop='timew stop'
+alias block-status='timew summary :day'
+
+# Combined status with timezone awareness
+
+alias now='echo "$(TZ=$LOCAL_TZ date "+%H:%M") $(~/bin/current-block.sh | jq -r .text | sed "s/|/-/")"'
+# Block management
+alias b="~/bin/blocks.sh"
+alias bm='b morning'
+alias bf='b flex'
+alias be='b evening'
+alias bs='b stop'
+alias bstatus='b status'
+
+# Tracking shortcuts
+alias track='timew start'
+alias untrack='timew stop'
+alias tracking='timew'
+alias summary='timew summary :day'
+alias week='timew summary :week'
+
+# Task management with timezone awareness
+alias today='TZ=$LOCAL_TZ task due:today'
+alias tomorrow='TZ=$LOCAL_TZ task due:tomorrow'
+alias upcoming='TZ=$LOCAL_TZ task due:future'
+
+# Quick journal access
+alias j='~/bin/daily-journal.sh'
+alias jr='~/bin/weekly-review.sh'
+
+# Quick journal for viewing/editing
+function jl() {
+  local days=${1:-0}
+  local date=$(date -v-${days}d +%Y-%m-%d)
+  local file=~/graph/life/journal/daily/$date.md
+  zeditor ~/graph "$file"
+}
+
+# Weekly review viewing/editing
+function wr() {
+  local weeks=${1:-0}
+  local date=$(date -v-${weeks}w +%Y-%m-%d)
+  local file=~/graph/life/journal/weekly-reviews/$date.md
+  zeditor ~/graph "$file"
+}
+
+# Life management help and quick workflow check
+alias life-help='~/bin/life-help.sh'
+alias lh='life-help'
+alias workflow='life-help workflow'
